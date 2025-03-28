@@ -222,7 +222,7 @@ const main = defineCommand({
             }
 
             const depUrl = new URL(
-              `/${owner}/${repo}/${pJson.name}@${isCompact ? abbreviateCommitHash(sha) : sha}`,
+              `/${owner}/${repo}/${pJson.name}@${sha}`,
               apiUrl,
             ).href;
             deps.set(pJson.name, depUrl);
@@ -231,7 +231,7 @@ const main = defineCommand({
             const resource = await fetch(depUrl);
             if (resource.ok) {
               console.warn(
-                `${pJson.name}@${isCompact ? abbreviateCommitHash(sha) : sha} was already published on ${depUrl}`,
+                `${pJson.name}@${abbreviateCommitHash(sha)} was already published on ${depUrl}`,
               );
             }
 
